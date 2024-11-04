@@ -1,6 +1,8 @@
 
+import config from './config.js';
+
 class DB {
-    #apiBaseUrl = 'http://localhost:3000';
+    #apiBaseUrl = config.httpmap;
 
     constructor() {
     }
