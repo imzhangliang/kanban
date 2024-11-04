@@ -2,10 +2,22 @@
 <head>
 <style type="text/css">
 #todoWrapper, #doingWrapper, #doneWrapper {
-    border: 1px solid black;
-    width: 200px;
-    height: 800px;
+    background-color: #f7f7f7;
+    width: 25%;
+    height: 600px;
     margin: 20px;
+}
+
+#todoWrapper:before {
+    content: "Todo"
+}
+
+#doingWrapper:before {
+    content: "Doing"
+}
+
+#doneWrapper:before {
+    content: "Done"
 }
 
 #wrapper > div {
