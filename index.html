@@ -1,0 +1,47 @@
+<html>
+<head>
+<style type="text/css">
+#todoWrapper, #doingWrapper, #doneWrapper {
+    border: 1px solid black;
+    width: 200px;
+    height: 800px;
+    margin: 20px;
+}
+
+#wrapper > div {
+    float: left;
+}
+
+#divider1, #divider2 {
+    padding-top: 200px;
+}
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="todoWrapper">
+            <input input="text" id="addTodo" />
+            <button id="addTodoBtn">add</button>
+            <div id="todo">
+            </div>
+        </div>
+        <div id="divider1">
+            <button class="leftArrow">&lt;</button>
+            <button class="rightArrow">&gt;</button>
+        </div>
+        <div id="doingWrapper">
+            <div id="doing">
+            </div>
+        </div>
+        <div id="divider2">
+            <button class="leftArrow">&lt;</button>
+            <button class="rightArrow">&gt;</button>
+        </div>
+        <div id="doneWrapper">
+            <div id="done">
+            </div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
