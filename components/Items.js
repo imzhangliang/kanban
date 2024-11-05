@@ -15,7 +15,7 @@ class Items {
 
     render() {
         this.#html = `<ul>
-            ${this.#items.map((item, index) => `<li><input name="item${index}" type="checkbox" />${item}<div style="display: none; padding-left: 5px;" class="control")><button class="up">^</button><button class="down">v</button></div></li>`).join(" ")}
+            ${this.#items.map((item, index) => `<li><input name="item${index}" type="checkbox" />${item}<div style="display: none; padding-left: 5px;" class="control")><button class="up">^</button><button class="down">v</button><button style="color: red" class="delete">X</button></div></li>`).join(" ")}
         </ul>`;
         const container = document.createElement('div');
         container.innerHTML = this.#html;
@@ -49,6 +49,12 @@ class Items {
             checkbox.parentElement.querySelector(".down").addEventListener("click", () => {
                 this.downRow(checkboxId);
             });
+
+            checkbox.parentElement.querySelector(".delete").addEventListener("click", () => {
+                if (confirm(`delete "${this.#items[checkboxId]}"?`)) {
+                    this.deleteItem(checkboxId);
+                }
+            });
         }
 
         this.#onSave(this.#items);
@@ -71,6 +77,25 @@ class Items {
         this.render();
 
         return removedItems;
+    }
+
+    deleteItem(index) {
+        if (index < 0 || index >= this.#items.length) {
+            return ;
+        }
+
+        this.#items.splice(index, 1);
+        if (this.#selection.has(index)) {
+            this.#selection.delete(index);
+        }
+
+        for (let i = index; i < this.#items.length - 1; i++) {
+            if (this.#selection.has(i + 1)) {
+                this.#selection.add(i);
+                this.#selection.delete(i + 1);
+            }
+        } 
+        this.render();
     }
 
     appendItems(items) {
